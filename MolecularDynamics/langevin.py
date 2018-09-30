@@ -109,8 +109,8 @@ def run(**args):
 
     natoms, box, dt, temp = args['natoms'], args['box'], args['dt'], args['temp']
     mass, relax, nsteps   = args['mass'], args['relax'], args['steps']
-    ofname, radius, freq  = args['ofname'],  args['radius'], args['freq']
-
+    ofname, freq, radius = args['ofname'], args['freq'], args['radius']
+    
     dim = len(box)
     pos = np.random.rand(natoms,dim)
 
@@ -137,12 +137,12 @@ def run(**args):
         # Check if any particle has collided with the wall
         wallHitCheck(pos,vels,box)
 
-        # Compute output (avg kinetic energy)
-        ins_temp = np.sum(np.dot(mass, (vels - vels.mean(axis=0))**2)) / (Boltzmann * 3 * natoms)
+        # Compute output (temperature)
+        ins_temp = np.sum(np.dot(mass, (vels - vels.mean(axis=0))**2)) / (Boltzmann * dim * natoms)
         output.append([step * dt, ins_temp])
         
         if not step%freq:
-            dump.writeOutput(ofname, natoms, step, box, mass=mass, radius=radius, pos=pos, v=vels)
+            dump.writeOutput(ofname, natoms, step, box, radius=radius, pos=pos, v=vels)
 
     return np.array(output)
 
@@ -158,7 +158,7 @@ if __name__ == '__main__':
         'steps': 10000,
         'freq': 100,
         'box': ((0, 1e-8), (0, 1e-8), (0, 1e-8)),
-        'ofname': 'traj.dump'
+        'ofname': 'traj-hydrogen-3D.dump'
         }
 
     output = run(**params)
@@ -166,5 +166,4 @@ if __name__ == '__main__':
     plt.plot(output[:,0] * 1e12, output[:,1])
     plt.xlabel('Time (ps)')
     plt.ylabel('Temp (K)')
-    plt.grid(linestyle=':')
     plt.show()
