@@ -93,7 +93,7 @@ def run(**args):
     @natoms (int): number of particles
     @temp (float): temperature (in Kelvin)
     @mass (float): particle mass (in Kg)
-    @relax (float): relaxation constant (in 1/seconds)
+    @relax (float): relaxation constant (in seconds)
     @dt (float): simulation timestep (s)
     @nsteps (int): total number of steps the solver performs
     @box (tuple): simulation box size (in meters) of size dimensions x 2
