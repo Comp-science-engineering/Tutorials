@@ -39,7 +39,7 @@ Boltzmann = 1.38064852e-23
 def wallHitCheck(pos, vels, box):
     """ This function enforces reflective boundary conditions.
     All particles that hit a wall  have their velocity updated
-    in tje opposite direction.
+    in the opposite direction.
 
     @pos: atomic positions (ndarray)
     @vels: atomic velocity (ndarray, updated if collisions detected)
