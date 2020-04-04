@@ -15,7 +15,7 @@ Boltzmann = 1.38064852e-23
 def wallHitCheck(pos, vels, box):
     """ This function enforces reflective boundary conditions.
     All particles that hit a wall  have their velocity updated
-    in tje opposite direction.
+    in the opposite direction.
     @pos: atomic positions (ndarray)
     @vels: atomic velocity (ndarray, updated if collisions detected)
     @box: simulation box size (tuple)
@@ -177,7 +177,7 @@ if __name__ == '__main__':
 #        'ofname': 'traj-hydrogen-3D.dump'
 #        }
 
-    """These are my updated parameters that cause an overload"""
+    """These are the new parameters that no longer cause an overload"""
     params = {
         'natoms': 10,
         'temp': 3e13,
